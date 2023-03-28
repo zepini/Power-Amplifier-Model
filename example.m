@@ -30,7 +30,12 @@ pa.make_pa_model(tx_Data, rx_Data);
 disp('New Coeffs:');
 disp(pa.poly_coeffs);
 
-fprintf('NMSE of fit: %d\n',pa.nmse_of_fit);
+nmse = pa.calculate_nmse(output_data, output_signal);
+nmse_dB = 10 * log10(nmse);
+
+
+
+fprintf('NMSE of fit: %d\n',nmse_dB);
 
 %% Plot the time domain input/output.
 % Create figure
