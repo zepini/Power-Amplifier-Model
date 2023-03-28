@@ -15,16 +15,14 @@ classdef PowerAmplifier
     methods
         function obj = PowerAmplifier(params)
             %POWERAMPLIFIER Construct an instance of this class.
-            % This will initialize with a basic Parallel Hammerstein PA model
-            % that was extracted from a WARP board.
             %
             
             if nargin == 0
                 params.order = 7;
                 params.memory_depth = 4;
-                params.noise_variance = 0.05;
-                params.add_lo_leakage = 1;
-                params.add_iq_imbalance = 1;
+                params.noise_variance = 0;
+                params.add_lo_leakage = 0;
+                params.add_iq_imbalance = 0;
             end
             
             if mod(params.order,2) == 0
@@ -85,8 +83,7 @@ classdef PowerAmplifier
         
         function obj = make_pa_model(obj, in, out)
             %make_pa_model	Learn a PA model
-            %	obj.make_pa_model(in, out) finds the best LS fit for a Parallel
-            %	Hammerstein power amplifier. The 'in' is a column vector that is
+            %   The 'in' is a column vector that is
             %	the signal that you put into the PA. The 'out' is a column
             %	vector that is the output of a real PA. This function will
             %	store the learned coefficients in obj.poly_coeffs. The PA model
