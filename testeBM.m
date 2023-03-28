@@ -1,4 +1,7 @@
 clear, clc, close all;
+
+addpath(genpath(fullfile('C:\Users\j.domingues\Desktop\Git_Repos')))
+
 % Example input/output data (you should replace these with actual data)
 % input_struct = load('C:\Users\j.domingues\Desktop\jdomingues\medidasSinalGeradoKeysight\inputGeradoKeysight_gravadoVSA');
 % output_struct = load('C:\Users\j.domingues\Desktop\jdomingues\medidasSinalGeradoKeysight\outputGeradoKeysight_gravadoVSA');
@@ -18,7 +21,7 @@ output_data_val = output_struct_val.y_val;
 
 args = 1;
 [P,G] = AMxM(input_data,output_data,args);
-Plevel = -60;
+Plevel = -20;
 condP40_indices = find(P > Plevel);
 input_data = input_data(condP40_indices);
 output_data = output_data(condP40_indices);
@@ -54,10 +57,13 @@ fprintf('NMSE: %f\n', nmse_dB);
 %% Meu memory polynomials
 
 %Fits weights
-[weights,sy] = fitWeights_memory(input_data./max(abs(input_data)),output_data./max(abs(output_data)),9,2)
-sigOut_test = evaluateModel_memory(input_data./max(abs(input_data)), weights, sy, orderNonLin,2).*max(abs(output_data));
+[weights,sy] = fitWeights_memory(input_data./max(abs(input_data)),output_data./max(abs(output_data)),90,200);
+sigOut_test = evaluateModel_memory(input_data./max(abs(input_data)), weights, sy, 90,200).*max(abs(output_data));
 % [weights,sy] = fitWeights(inputSignal2,outputSignal2,orderNonLin)
 % sigOut_test = evaluateModel(inputSignal2, weights, sy, orderNonLin);
 
+% Calculate the NMSE
+nmse = pa.calculate_nmse(output_data, sigOut_test);
+nmse_dB = 10 * log10(nmse);
 
-NMSE = nmse(output_data,sigOut_test)
+fprintf('NMSE: %f\n', nmse_dB);
