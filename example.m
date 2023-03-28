@@ -11,9 +11,9 @@
 % Setup the PA
 params.order = 7;          % Order must be odd
 params.memory_depth = 4;
-params.noise_variance = 0.05;
-params.add_lo_leakage = 1;
-params.add_iq_imbalance = 1;
+params.noise_variance = 0;
+params.add_lo_leakage = 0;
+params.add_iq_imbalance = 0;
 pa = PowerAmplifier(params);
 
 % Setup TX Signal
