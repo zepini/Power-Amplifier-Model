@@ -7,7 +7,7 @@
 % July 2018;
 
 %% ------------- BEGIN CODE --------------
-
+clear all, close all, clc;
 % Setup the PA
 params.order = 7;          % Order must be odd
 params.memory_depth = 4;
@@ -30,12 +30,12 @@ pa.make_pa_model(tx_Data, rx_Data);
 disp('New Coeffs:');
 disp(pa.poly_coeffs);
 
-nmse = pa.calculate_nmse(output_data, output_signal);
+nmse = pa.calculate_nmse(tx_Data, rx_Data);
 nmse_dB = 10 * log10(nmse);
 
 
 
-fprintf('NMSE of fit: %d\n',nmse_dB);
+fprintf('NMSE of fit: %f dB\n',nmse_dB);
 
 %% Plot the time domain input/output.
 % Create figure
