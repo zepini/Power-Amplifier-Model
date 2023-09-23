@@ -8,7 +8,7 @@
 *.mat
 
 # Ignore Figure and image files
-*.Figure
+*.fig
 *.png
 *.pdf
 *.eps
