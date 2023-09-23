@@ -1,2 +1,48 @@
+# Ignore compiled MATLAB files
+*.mex
+*.mexa64
+*.mexmaci64
+*.mexw64
 
+# Ignore MATLAB binary files
+*.mat
+
+# Ignore Figure and image files
+*.Figure
+*.png
+*.pdf
+*.eps
+
+# Ignore Simulink model files
+*.slx
+*.sldd
+
+# Ignore Simulink cache files
+slprj
+simulink
+
+# Ignore generated code
+codegen
+
+# Ignore MATLAB App files
+*.mlapp
+*.mlappinstall
+
+# Ignore MATLAB live scripts outputs
+*.mlxhtml
+
+# Ignore MATLAB preferences file
+matlab*.prf
+
+# Ignore MATLAB Simulink preferences file
+simulink*.prf
+
+# Ignore project-specific configuration files (specific to MATLAB projects)
+*.prj
+
+# Ignore Auto-generated files
 *.asv
+
+# Ignore system-specific files
+*.DS_Store
+Thumbs*.db
